@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: "Inter";
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.cinzel-font {
+  font-family: "Cinzel";
+  font-optical-sizing: auto;
+  font-style: normal;
+}
