@@ -30,10 +30,10 @@ const NavBar = () => {
     </>
     return (
         <div>
-            <div className="navbar bg-[#15151580] py-8">
+            <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-30 bg-[#15151580] py-4">
                 <div className="w-[60%] md:w-[70%] justify-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -49,7 +49,7 @@ const NavBar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-opacity-30 bg-[#15151580] rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {navOptions}
                         </ul>
                     </div>
