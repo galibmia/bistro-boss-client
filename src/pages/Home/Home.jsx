@@ -3,6 +3,8 @@ import Banner from './Banner/Banner';
 import Category from './Category/Category';
 import Service from './Service/Service';
 import PopularMenu from './PopularMenu/PopularMenu';
+import CallUs from './CallUs/CallUs';
+import ChefRecommends from './ChefRecommends/ChefRecommends';
 
 const Home = () => {
     return (
@@ -18,6 +20,12 @@ const Home = () => {
             </div>
             <div className='my-20'>
                 <PopularMenu></PopularMenu>
+            </div>
+            {/* <div className='my-20'>
+                <CallUs></CallUs>
+            </div> */}
+            <div className='my-20'>
+                <ChefRecommends></ChefRecommends>
             </div>
         </div>
     );
