@@ -30,7 +30,7 @@ const NavBar = () => {
     </>
     return (
         <div>
-            <div className="navbar max-w-screen-xl fixed z-10 bg-opacity-30 bg-[#15151580] py-4">
+            <div className="navbar max-w-screen-xl fixed z-50 bg-opacity-30 bg-[#15151580] py-4">
                 <div className="w-[60%] md:w-[70%] justify-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">
