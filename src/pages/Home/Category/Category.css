@@ -1,0 +1,58 @@
+.mySwiper {
+    position: relative;
+    padding-bottom: 40px;
+    /* Adjust the padding as needed */
+}
+
+.mySwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide-img {
+    width: 100%;
+    /* Adjust this value to increase or decrease the image size */
+    height: auto;
+    object-fit: cover;
+    /* Ensure the image covers the container */
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    /* Adjust the distance from the bottom as needed */
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.swiper-pagination-bullet {
+    background-color: #b4b4b4;
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #007AFF;
+}
