@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner/Banner';
 import Category from './Category/Category';
 import Service from './Service/Service';
+import PopularMenu from './PopularMenu/PopularMenu';
 
 const Home = () => {
     return (
@@ -14,6 +15,9 @@ const Home = () => {
             </div>
             <div className='my-20'>
                 <Service></Service>
+            </div>
+            <div className='my-20'>
+                <PopularMenu></PopularMenu>
             </div>
         </div>
     );

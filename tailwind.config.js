@@ -9,6 +9,9 @@ export default {
       letterSpacing: {
         'custom': '9.12px',
       },
+      borderRadius: {
+        'custom': '0px 200px 200px 200px'
+      },
     },
   },
   plugins: [
@@ -18,4 +21,3 @@ export default {
     themes: ["light"],
   },
 }
-
