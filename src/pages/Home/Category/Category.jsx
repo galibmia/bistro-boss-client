@@ -53,13 +53,13 @@ const Category = () => {
                 <SwiperSlide>
                     <div className="slide-content">
                         <img src={sliderImg2} alt="Slide 2" className="slide-img" />
-                        <div className="overlay-text cinzel-font">SOUPS</div>
+                        <div className="overlay-text cinzel-font">PIZZAS</div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="slide-content">
                         <img src={sliderImg3} alt="Slide 3" className="slide-img" />
-                        <div className="overlay-text cinzel-font">PIZZAS</div>
+                        <div className="overlay-text cinzel-font">SOUPS</div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>

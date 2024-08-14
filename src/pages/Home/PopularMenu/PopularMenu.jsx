@@ -5,16 +5,16 @@ import MenuItem from '../../Shared/MenuItems/MenuItem';
 const PopularMenu = () => {
 
     const [menu, setMenu] = useState([]);
-    useEffect( () => {
+    useEffect(() => {
         fetch('menu.json')
-        .then(res => res.json())
-        .then(data => {
-            const popularItems = data.filter(item => item.category === 'popular');
-            setMenu(popularItems);
-        })
-    } , [])
+            .then(res => res.json())
+            .then(data => {
+                const popularItems = data.filter(item => item.category === 'popular');
+                setMenu(popularItems);
+            })
+    }, [])
 
-    
+
     return (
         <section>
             <SectionTitle
@@ -29,6 +29,9 @@ const PopularMenu = () => {
                     >
                     </MenuItem>)
                 }
+            </div>
+            <div className='flex justify-center mt-5'>
+                <button className="bg-[#E8E8E8] border-b-2 border-b-[#BB8506] px-8 py-3 rounded-lg hover:bg-[#1F2937] text-[#BB8506] uppercase mt-2">View full menu</button>
             </div>
         </section>
     );
