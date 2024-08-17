@@ -6,9 +6,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
-    const { loginWithGoogle, signInWithPassword, setUser } = useContext(AuthContext)
+
+    const { loginWithGoogle, signInWithPassword, setUser } = useContext(AuthContext);
+
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
@@ -68,6 +71,9 @@ const Login = () => {
 
     return (
         <div className='flex items-center justify-center' style={{ backgroundImage: `url(${backgroundImg})`, height: '100vh' }}>
+            <Helmet>
+                <title>Login | Bistro Boss</title>
+            </Helmet>
             <div className='max-w-screen-xl mx-auto shadow-custom'>
                 <div className="py-10 px-24">
                     <div className="hero-content flex-col lg:flex-row gap-5">
