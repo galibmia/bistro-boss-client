@@ -1,18 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import backgroundImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+    const { loginWithGoogle } =useContext(AuthContext)
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -21,6 +25,14 @@ const Login = () => {
         const password = form.password.value;
 
         console.log(email, password);
+    }
+
+    const handleLoginWithGoogle = () => {
+        loginWithGoogle()
+        .then(result => {
+            navigate('/')
+        })  
+        .catch(error => console.log(error.message))
     }
 
     const handleValidateCaptcha = () => {
@@ -71,9 +83,15 @@ const Login = () => {
                                     </button>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button disabled={disabled} className="btn bg-[#D1A054B2] hover:bg-[#fcb751b2] text-white p-2">Login</button>
+                                    <button disabled={disabled} type='submit' className="btn bg-[#D1A054B2] hover:bg-[#fcb751b2] text-white p-2">Login</button>
+                                </div>
+                                <div className='mt-4'>
+                                    <Link to={'/register'} className="text-[#c28934] hover:text-[#cc9441] ml-8">New here? <span className='font-semibold'>Create a New Account</span></Link>
+                                    <span className='text-center text-gray-500 flex justify-center mb-2'>Or</span>
+                                    <button onClick={handleLoginWithGoogle} className='w-full btn btn-outline border-red-600 text-red-600 hover:border-red-600  hover:bg-red-600 hover:transition-opacity transition-colors duration-500'>Login With Google</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

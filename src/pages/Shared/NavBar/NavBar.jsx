@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ActiveLink from '../../../components/ActiveLink/ActiveLink';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(result => console.log(result))
+            .catch(error => console.log(error.message))
+    }
 
     const navOptions = <>
         <li>
@@ -20,15 +29,22 @@ const NavBar = () => {
         <li>
             <ActiveLink to={'/order/salad'} className='font-bold md:text-white'>ORDER</ActiveLink>
         </li>
-        <li>
-            <Link to={'/login'} className='font-bold md:text-white'>LOGIN</Link>
-        </li>
-        <li>
-            <img
-            className='w-10 rounded-full hidden lg:block'
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </li>
+        {
+            user ? <>
+                <li>
+                    <img
+                        alt="User Avatar"
+                        className='w-8 rounded-full'
+                        src={user.photoURL} />
+                </li>
+                <li>
+                    <button onClick={handleLogOut} className='font-bold md:text-white uppercase'>LogOut</button>
+                </li>
+            </> :
+                <li>
+                    <Link to={'/login'} className='font-bold md:text-white'>LOGIN</Link>
+                </li>
+        }
 
     </>
     return (
