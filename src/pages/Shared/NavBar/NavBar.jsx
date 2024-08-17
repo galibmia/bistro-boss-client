@@ -21,6 +21,9 @@ const NavBar = () => {
             <ActiveLink to={'/order/salad'} className='font-bold md:text-white'>ORDER</ActiveLink>
         </li>
         <li>
+            <Link to={'/login'} className='font-bold md:text-white'>LOGIN</Link>
+        </li>
+        <li>
             <img
             className='w-10 rounded-full hidden lg:block'
             alt="Tailwind CSS Navbar component"
