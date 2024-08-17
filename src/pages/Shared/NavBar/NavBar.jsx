@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ActiveLink from '../../../components/ActiveLink/ActiveLink';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { MdLogout } from "react-icons/md";
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const NavBar = () => {
                         src={user.photoURL} />
                 </li>
                 <li>
-                    <button onClick={handleLogOut} className='font-bold md:text-white uppercase'>LogOut</button>
+                    <button onClick={handleLogOut} className='font-bold md:text-white uppercase'><MdLogout className='text-2xl mt-1' /></button>
                 </li>
             </> :
                 <li>

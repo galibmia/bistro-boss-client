@@ -5,11 +5,14 @@ import NavBar from '../pages/Shared/NavBar/NavBar';
 const Main = () => {
     const location = useLocation();
     const isLogin = location.pathname.includes('/login');
+    const isRegister = location.pathname.includes('/register');
+
+    const hideNavAndFooter = isLogin || isRegister;
     return (
-        <div className={!isLogin ? 'max-w-screen-xl mx-auto' : ''}>
-            {!isLogin && <NavBar />}
+        <div className={!hideNavAndFooter ? 'max-w-screen-xl mx-auto' : ''}>
+            {!hideNavAndFooter && <NavBar />}
             <Outlet />
-            {!isLogin && <Footer />}
+            {!hideNavAndFooter && <Footer />}
         </div>
     );
 };

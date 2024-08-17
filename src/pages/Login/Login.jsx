@@ -2,16 +2,19 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import backgroundImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-    const { loginWithGoogle } =useContext(AuthContext)
+    const { loginWithGoogle, signInWithPassword, setUser } = useContext(AuthContext)
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -24,15 +27,33 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        signInWithPassword(email, password)
+            .then(res => {
+                const loggedUser = res.user;
+                setUser(loggedUser);
+                Swal.fire({
+                    title: "Login Success!",
+                    text: "You successfully login your account",
+                    icon: "success"
+                });
+                form.reset();
+                navigate(from, { replace: true });
+            })
+
+
     }
 
     const handleLoginWithGoogle = () => {
         loginWithGoogle()
-        .then(result => {
-            navigate('/')
-        })  
-        .catch(error => console.log(error.message))
+            .then(result => {
+                Swal.fire({
+                    title: "Login Success!",
+                    text: "You successfully login your account",
+                    icon: "success"
+                });
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.log(error.message))
     }
 
     const handleValidateCaptcha = () => {
@@ -48,7 +69,7 @@ const Login = () => {
     return (
         <div className='flex items-center justify-center' style={{ backgroundImage: `url(${backgroundImg})`, height: '100vh' }}>
             <div className='max-w-screen-xl mx-auto shadow-custom'>
-                <div className="p-14">
+                <div className="py-10 px-24">
                     <div className="hero-content flex-col lg:flex-row gap-5">
                         <div className="text-center lg:text-left">
                             <img src={loginImg} alt="" />
