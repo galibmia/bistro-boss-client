@@ -18,7 +18,7 @@ const MenuCategory = ({category}) => {
                 }
             </div>
             <div className='flex justify-center mt-5'>
-                <Link to={`/order/${category}`}><button className="bg-[#E8E8E8] border-b-2 border-b-[#BB8506] px-8 py-3 rounded-lg hover:bg-[#1F2937] text-[#BB8506] uppercase mt-2">ORDER YOUR FAVOURITE FOOD</button></Link>
+                <Link to={`/order/${category}`}><button className="bg-[#E8E8E8] border-b-2 border-b-[#BB8506] px-8 py-3 rounded-lg hover:bg-[#1F2937] text-[#BB8506] uppercase mt-2">Order your favorite {category=='offered'? 'Food': category}</button></Link>
             </div>
         </>
 
