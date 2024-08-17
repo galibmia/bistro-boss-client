@@ -1,0 +1,7 @@
+.react-tabs__tab--selected{
+    background-color: greenyellow;
+    font-weight: 500;
+}
+.react-tabs__tab-list{
+    margin-bottom: 20px;
+}

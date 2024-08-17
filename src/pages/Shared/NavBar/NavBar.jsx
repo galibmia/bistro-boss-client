@@ -18,7 +18,7 @@ const NavBar = () => {
             <ActiveLink to={'/menu'} className='font-bold md:text-white'>OUR MENU</ActiveLink>
         </li>
         <li>
-            <ActiveLink to={'/shop'} className='font-bold md:text-white'>OUR SHOP</ActiveLink>
+            <ActiveLink to={'/order/salad'} className='font-bold md:text-white'>ORDER</ActiveLink>
         </li>
         <li>
             <img
