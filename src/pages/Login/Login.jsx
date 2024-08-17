@@ -12,8 +12,6 @@ const Login = () => {
 
     const { loginWithGoogle, signInWithPassword, setUser } = useContext(AuthContext);
 
-
-    const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
@@ -42,8 +40,7 @@ const Login = () => {
                 form.reset();
                 navigate(from, { replace: true });
             })
-
-
+            .catch(error => console.log(error.message))
     }
 
     const handleLoginWithGoogle = () => {
@@ -59,8 +56,9 @@ const Login = () => {
             .catch(error => console.log(error.message))
     }
 
-    const handleValidateCaptcha = () => {
-        const user_captcha_value = captchaRef.current.value;
+    const handleValidateCaptcha = (e) => {
+        const user_captcha_value = e.target.value;
+        console.log(user_captcha_value)
         if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
         }
@@ -100,14 +98,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-control">
                                     <LoadCanvasTemplate />
-                                    <input type="text" placeholder="Type here" ref={captchaRef} className="input rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md" required />
-                                    <button
-                                        disabled={!disabled}
-                                        className={`bg-gray-200 hover:bg-gray-300 w-4/12 mt-2 rounded-md ${!disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                        onClick={handleValidateCaptcha}
-                                    >
-                                        Validate
-                                    </button>
+                                    <input type="text" placeholder="Type here" onBlur={handleValidateCaptcha} className="input rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md" required />
                                 </div>
                                 <div className="form-control mt-6">
                                     <button disabled={disabled} type='submit' className="btn bg-[#D1A054B2] hover:bg-[#fcb751b2] text-white p-2">Login</button>
