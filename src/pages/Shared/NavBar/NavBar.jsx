@@ -6,7 +6,6 @@ import { MdLogout } from "react-icons/md";
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user)
 
     const handleLogOut = () => {
         logOut()
@@ -30,16 +29,38 @@ const NavBar = () => {
         <li>
             <ActiveLink to={'/order/salad'} className='font-bold md:text-white'>ORDER</ActiveLink>
         </li>
+        <li>
+            <Link>
+                <div className="indicator">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 md:mt-1 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span className="badge badge-sm indicator-item bg-red-700 text-white border-red-700">0</span>
+                </div>
+            </Link>
+        </li>
         {
             user ? <>
                 <li>
                     <img
-                        alt="User Avatar"
-                        className='w-8 rounded-full'
-                        src={user.photoURL} />
+                        alt={user.displayName}
+                        className='w-6 h-6 rounded-full'
+                        src={user?.photoURL} />
                 </li>
                 <li>
-                    <button onClick={handleLogOut} className='font-bold md:text-white uppercase'><MdLogout className='text-2xl mt-1' /></button>
+                    <button onClick={handleLogOut} className='font-bold hidden md:block md:text-white uppercase'><MdLogout className='text-2xl mt-1' /></button>
+                </li>
+                <li>
+                    <button onClick={handleLogOut} className='font-bold md:hidden text-white uppercase'>LOG OUT</button>
                 </li>
             </> :
                 <li>
@@ -69,7 +90,7 @@ const NavBar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-opacity-30 bg-[#15151580] rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-opacity-30 bg-[#15151580] rounded-box z-[1] mt-3 w-64 p-2 shadow">
                             {navOptions}
                         </ul>
                     </div>
