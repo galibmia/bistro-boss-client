@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { SlCalender } from "react-icons/sl";
 import { GiWallet } from "react-icons/gi";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
 import { MdReviews, MdEmail, MdMenu } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
-import ActiveLink from '../components/ActiveLink/ActiveLink';
 
 
 
@@ -29,12 +28,12 @@ const Dashboard = () => {
                 </h1>
                 <ul className="menu  w-80 p-4 cinzel-font">
                     {/* Sidebar content here */}
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</ActiveLink></li>
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </ActiveLink></li>
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</ActiveLink></li>
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart</ActiveLink></li>
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/review'><MdReviews className='text-2xl' /> Add Review</ActiveLink></li>
-                    <li className='uppercase cinzel-font'><ActiveLink to='/dashboard/booking'><BsFillCalendarDateFill className='text-2xl' /> My Booking</ActiveLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart</NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/review'><MdReviews className='text-2xl' /> Add Review</NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/booking'><BsFillCalendarDateFill className='text-2xl' /> My Booking</NavLink></li>
 
                     <div className="divider border-white"></div>
 
