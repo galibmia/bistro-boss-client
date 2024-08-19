@@ -3,12 +3,44 @@ import useCart from '../../../hooks/useCart';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from 'sweetalert2';
 
 
 const MyCart = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
 
     const total = cart.reduce((sum, item) => item.price + sum, 0);
+
+    const handleDeleteItem = (id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to delete this item?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Item has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+
+    }
 
     return (
         <div className='mb-20'>
@@ -60,7 +92,7 @@ const MyCart = () => {
                                         <td className="text-[#737373]">
                                             ${item.price}
                                         </td>
-                                        <td><button className='bg-red-600 text-white p-3 text-2xl rounded-lg'><RiDeleteBin6Line /></button></td>
+                                        <td><button onClick={() => handleDeleteItem(item._id)} className='bg-red-600 text-white p-3 text-2xl rounded-lg'><RiDeleteBin6Line /></button></td>
                                     </tr>
                                 ))
 

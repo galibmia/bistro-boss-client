@@ -6,11 +6,13 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
 import { MdReviews, MdEmail, MdMenu } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
+import useCart from '../hooks/useCart';
 
 
 
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -21,7 +23,7 @@ const Dashboard = () => {
                     Open drawer
                 </label>
             </div>
-            <div className="drawer-side bg-[#D1A054] text-[#151515] fixed">
+            <div className="drawer-side bg-[#D1A054] text-[#151515]">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <h1 className='w-4/5 mx-auto my-8'>
                     <span className='cinzel-font text-xl md:text-[32px] font-black text-black'>BISTRO BOSS</span> <br /> <span className='cinzel-font font-semibold text-xl md:text-2xl text-black tracking-widest md:tracking-custom'>Restaurant</span>
@@ -31,7 +33,9 @@ const Dashboard = () => {
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart</NavLink></li>
+                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart 
+                    <span className="badge badge-sm indicator-item bg-red-700 text-white border-red-700">{cart?.length}</span>
+                    </NavLink></li>
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/review'><MdReviews className='text-2xl' /> Add Review</NavLink></li>
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/booking'><BsFillCalendarDateFill className='text-2xl' /> My Booking</NavLink></li>
 
