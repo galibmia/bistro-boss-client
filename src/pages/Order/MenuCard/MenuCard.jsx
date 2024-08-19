@@ -3,12 +3,14 @@ import useMenu from '../../../hooks/useMenu';
 import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useCart from '../../../hooks/useCart';
 
 const MenuCard = ({ category }) => {
     const { menu } = useMenu(category);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const [, refetch] = useCart();
 
     const handleAddToCart = (item) => {
 
@@ -41,6 +43,7 @@ const MenuCard = ({ category }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
+                        refetch();
                         Swal.fire({
                             title: "Item Added Successfully",
                             text: `${item.name} added to your cart`,
