@@ -36,7 +36,9 @@ const Home = () => {
                 <CallUs></CallUs>
             </div>
             <div className='my-20'>
-                <ChefRecommends></ChefRecommends>
+                <ChefRecommends
+                    category={'recommended'}
+                ></ChefRecommends>
             </div>
             <div className='my-20'>
                 <Featured></Featured>

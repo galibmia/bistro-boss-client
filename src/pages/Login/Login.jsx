@@ -58,7 +58,7 @@ const Login = () => {
 
     const handleValidateCaptcha = (e) => {
         const user_captcha_value = e.target.value;
-        console.log(user_captcha_value)
+
         if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
         }

@@ -7,8 +7,6 @@ const useMenu = (category) => {
         fetch(`http://localhost:5000/menu?category=${category}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
-                // const menuItem = data.filter(item => item.category === category);
                 setMenu(data);
                 setLoading(false);
             })

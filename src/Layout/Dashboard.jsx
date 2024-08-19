@@ -28,7 +28,7 @@ const Dashboard = () => {
                 <h1 className='w-4/5 mx-auto my-8'>
                     <span className='cinzel-font text-xl md:text-[32px] font-black text-black'>BISTRO BOSS</span> <br /> <span className='cinzel-font font-semibold text-xl md:text-2xl text-black tracking-widest md:tracking-custom'>Restaurant</span>
                 </h1>
-                <ul className="menu  w-80 p-4 cinzel-font">
+                <ul className="menu  w-80 p-4 cinzel-font space-y-2 ">
                     {/* Sidebar content here */}
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
                     <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>

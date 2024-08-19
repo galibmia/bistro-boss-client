@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const MenuCategory = ({category}) => {
     const { menu } = useMenu(category);
-    console.log(category);
+    
     return (
         <>
             <div className='grid lg:grid-cols-2 gap-4 w-4/5 mx-auto'>
