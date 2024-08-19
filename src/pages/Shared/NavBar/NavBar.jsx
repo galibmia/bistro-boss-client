@@ -24,7 +24,7 @@ const NavBar = () => {
             <ActiveLink to={'/contact'} className='font-bold md:text-white'>CONTACT US</ActiveLink>
         </li>
         <li>
-            <ActiveLink to={'/dashboard'} className='font-bold md:text-white'>DASHBOARD</ActiveLink>
+            <ActiveLink to={'/dashboard/myCart'} className='font-bold md:text-white'>DASHBOARD</ActiveLink>
         </li>
         <li>
             <ActiveLink to={'/menu'} className='font-bold md:text-white'>OUR MENU</ActiveLink>
