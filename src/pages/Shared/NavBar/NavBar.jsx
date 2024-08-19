@@ -33,7 +33,7 @@ const NavBar = () => {
             <ActiveLink to={'/order/salad'} className='font-bold md:text-white'>ORDER</ActiveLink>
         </li>
         <li>
-            <Link>
+            <Link to='/dashboard/myCart'>
                 <div className="indicator">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

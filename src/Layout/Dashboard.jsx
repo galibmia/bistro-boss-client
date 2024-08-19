@@ -14,14 +14,14 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content w-[70%] mx-auto bg-[#F6F6F6]">
                 {/* Page content here */}
                 <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
                     Open drawer
                 </label>
             </div>
-            <div className="drawer-side bg-[#D1A054] text-[#151515]">
+            <div className="drawer-side bg-[#D1A054] text-[#151515] fixed">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <h1 className='w-4/5 mx-auto my-8'>
                     <span className='cinzel-font text-xl md:text-[32px] font-black text-black'>BISTRO BOSS</span> <br /> <span className='cinzel-font font-semibold text-xl md:text-2xl text-black tracking-widest md:tracking-custom'>Restaurant</span>
