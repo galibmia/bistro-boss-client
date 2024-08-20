@@ -11,18 +11,38 @@ const Register = () => {
 
     // React form 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
+
     const { loginWithGoogle, createUser, updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
     const onSubmit = data => {
-        const {name, email, password, photoURL} = data;
-        
+        const { name, email, password, photoURL } = data;
+
         createUser(email, password)
             .then(result => {
                 updateUser(name, photoURL)
-                    .then()
+                    .then(() => {
+                        const savedUser = { name, email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    Swal.fire({
+                                        title: "Success",
+                                        text: "Your account create successfully",
+                                        icon: "success"
+                                    });
+                                    navigate('/')
+                                }
+                            })
+                    })
                     .catch((err) => {
                         const message = err.message;
                         Swal.fire({
@@ -31,12 +51,7 @@ const Register = () => {
                             icon: "error"
                         });
                     })
-                Swal.fire({
-                    title: "Greet job!",
-                    text: "Your account create successfully",
-                    icon: "success"
-                });
-                navigate('/')
+
             })
             .catch(err => {
                 const message = err.message;
@@ -52,6 +67,31 @@ const Register = () => {
     const handleLoginWithGoogle = () => {
         loginWithGoogle()
             .then(result => {
+                const loggedInUser = result.user;
+                const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Success",
+                                text: "Your account create successfully",
+                                icon: "success"
+                            });
+                            navigate('/')
+                        }
+                    })
+                Swal.fire({
+                    title: "Success",
+                    text: "Your account create successfully",
+                    icon: "success"
+                });
                 navigate('/')
             })
             .catch(error => console.log(error.message))
