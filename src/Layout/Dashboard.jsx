@@ -3,9 +3,13 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { SlCalender } from "react-icons/sl";
 import { GiWallet } from "react-icons/gi";
 import { BsFillCalendarDateFill } from "react-icons/bs";
-import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
+import { FaShoppingCart, FaShoppingBag, FaBook, FaUsers  } from "react-icons/fa";
 import { MdReviews, MdEmail, MdMenu } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
+import { ImSpoonKnife } from "react-icons/im";
+import { TfiMenuAlt } from "react-icons/tfi";
+
+
 import useCart from '../hooks/useCart';
 
 
@@ -13,6 +17,10 @@ import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
     const [cart] = useCart();
+
+    // TODO: Set isAdmin value based on data load from server.
+    const isAdmin = true;
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -30,20 +38,30 @@ const Dashboard = () => {
                 </h1>
                 <ul className="menu  w-80 p-4 cinzel-font space-y-2 ">
                     {/* Sidebar content here */}
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart 
-                    <span className="badge badge-sm indicator-item bg-red-700 text-white border-red-700">{cart?.length}</span>
-                    </NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/review'><MdReviews className='text-2xl' /> Add Review</NavLink></li>
-                    <li className='uppercase cinzel-font'><NavLink to='/dashboard/booking'><BsFillCalendarDateFill className='text-2xl' /> My Booking</NavLink></li>
+                    {
+                        isAdmin ? <>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/adminHome'><AiFillHome className='text-2xl' /> Admin Home</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/addItem'><ImSpoonKnife className='text-2xl' /> Add item </NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/manageItems'><TfiMenuAlt className='text-2xl' /> Manage Items</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/manageBookings'><FaBook className='text-2xl' /> Manage Bookings</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/allUsers'><FaUsers className='text-2xl' /> All Users</NavLink></li>
+                        </> : <>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart
+                                <span className="badge badge-sm indicator-item bg-red-700 text-white border-red-700">{cart?.length}</span>
+                            </NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/review'><MdReviews className='text-2xl' /> Add Review</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/booking'><BsFillCalendarDateFill className='text-2xl' /> My Booking</NavLink></li>
+                        </>
+                    }
 
                     <div className="divider border-white"></div>
 
                     <li className='uppercase cinzel-font'><Link to='/'><AiFillHome className='text-2xl' /> Home</Link></li>
                     <li className='uppercase cinzel-font'><Link to='/menu'><MdMenu className='text-2xl' /> Menu </Link></li>
-                    <li className='uppercase cinzel-font'><Link to='/shop'><FaShoppingBag  className='text-2xl' /> Order</Link></li>
+                    <li className='uppercase cinzel-font'><Link to='/shop'><FaShoppingBag className='text-2xl' /> Order</Link></li>
                     <li className='uppercase cinzel-font'><Link to='/contact'><MdEmail className='text-2xl' />Contact</Link></li>
                 </ul>
 
