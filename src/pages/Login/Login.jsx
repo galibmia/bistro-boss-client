@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import backgroundImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
 import './Login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
-    const { loginWithGoogle, signInWithPassword, setUser } = useContext(AuthContext);
+    const { loginWithGoogle, signInWithPassword, setUser } = useAuth();
 
     const [disabled, setDisabled] = useState(true);
     const navigate = useNavigate();

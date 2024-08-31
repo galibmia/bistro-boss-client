@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ActiveLink from '../../../components/ActiveLink/ActiveLink';
-import { AuthContext } from '../../../providers/AuthProvider';
 import { MdLogout } from "react-icons/md";
 import useCart from '../../../hooks/useCart';
+import useAuth from '../../../hooks/useAuth';
 
 const NavBar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
 
     const [cart] = useCart();
 

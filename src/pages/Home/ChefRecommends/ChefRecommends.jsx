@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import cardImg from '../../../assets/home/Rectangle 5.png'
 import useMenu from '../../../hooks/useMenu';
-import { AuthContext } from '../../../providers/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../../hooks/useCart';
 import Swal from 'sweetalert2';
+import useAuth from '../../../hooks/useAuth';
 
 const ChefRecommends = ({ category }) => {
     const { menu } = useMenu(category);
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [, refetch] = useCart();

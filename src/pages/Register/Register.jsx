@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/others/authentication2.png';
-import backgroundImg from '../../assets/others/authentication.png'
-import { AuthContext } from '../../providers/AuthProvider';
+import backgroundImg from '../../assets/others/authentication.png';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form"
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
 
     // React form 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const { loginWithGoogle, createUser, updateUser } = useContext(AuthContext);
+    const { loginWithGoogle, createUser, updateUser } = useAuth();
     const navigate = useNavigate();
 
 
