@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 import axios from 'axios';
 
@@ -12,55 +12,94 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    const createUser = (email, password) => {
+    const createUser = async (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            return userCredential;
+        } catch (error) {
+            console.error("Error creating user:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const updateUser = (name, photo) => {
+    const updateUser = async (name, photo) => {
         setLoading(true);
-        return updateProfile(auth.currentUser, {
-            displayName: name,
-            photoURL: photo
-        });
+        try {
+            await updateProfile(auth.currentUser, {
+                displayName: name,
+                photoURL: photo
+            });
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const signInWithPassword = (email, password) => {
+    const signInWithPassword = async (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            return userCredential;
+        } catch (error) {
+            console.error("Error signing in:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const loginWithGoogle = () => {
+    const loginWithGoogle = async () => {
         setLoading(true);
-        return signInWithPopup(auth, googleProvider);
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            return result;
+        } catch (error) {
+            console.error("Error signing in with Google:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }
 
-    const logOut = () => {
-        return signOut(auth);
+    const logOut = async () => {
+        setLoading(true);
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.error("Error signing out:", error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
 
-            if(currentUser){
+
+            // Get and Set token
+            if (currentUser) {
                 axios.post('http://localhost:5000/jwt', {
-                    email: currentUser.email
-                })
-                .then( data => {
-                    localStorage.setItem('access-token', data.data.token);
-                })
-            }
-            else{
+                        email: currentUser.email
+                    })
+                    .then(data => {
+                        localStorage.setItem('access-token', data.data.token);
+                    })
+                
+            } else {
                 localStorage.removeItem('access-token');
             }
 
             setLoading(false);
         });
-        return () => {
-            return unsubscribe();
-        }
+
+        return () => unsubscribe();
     }, []);
 
     const authInfo = {

@@ -4,15 +4,15 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from 'sweetalert2';
-
+import useAxiosSecure from '../../../hooks/useAxiosSecure'; // Import the custom hook
 
 const MyCart = () => {
     const [cart, refetch] = useCart();
+    const axiosSecure = useAxiosSecure(); // Get the axios instance with secure config
 
     const total = cart.reduce((sum, item) => item.price + sum, 0);
 
     const handleDeleteItem = (id) => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You want to delete this item?",
@@ -23,13 +23,10 @@ const MyCart = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount > 0) {
-                            refetch();
+                axiosSecure.delete(`/carts/${id}`) // Use axios to delete the item
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch(); // Refetch the cart data
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Item has been deleted.",
@@ -37,9 +34,16 @@ const MyCart = () => {
                             });
                         }
                     })
+                    .catch((error) => {
+                        console.error("Error deleting item:", error);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete the item.",
+                            icon: "error"
+                        });
+                    });
             }
         });
-
     }
 
     return (

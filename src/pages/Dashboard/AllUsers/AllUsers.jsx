@@ -8,10 +8,10 @@ import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'], // The key for the query
+        queryKey: ['users'], 
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
-            return res.json(); // Return the parsed JSON
+            return res.json();
         }
     });
 

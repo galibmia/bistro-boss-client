@@ -9,7 +9,7 @@ const MenuCard = ({ category }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const [, refetch] = useCart();
+    const [,refetch] = useCart();
 
     const handleAddToCart = (item) => {
 
