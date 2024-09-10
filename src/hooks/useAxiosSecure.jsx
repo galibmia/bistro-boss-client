@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000', 
+    baseURL: 'http://localhost:5000',
   });
 
   useEffect(() => {
@@ -16,17 +16,14 @@ const useAxiosSecure = () => {
     const requestInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem('access-token');
-        if (!token) {
-          console.error("No token found in localStorage at request time");
-        }
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
+        } else {
+          console.error("No token found in localStorage");
         }
         return config;
       },
-      (error) => {
-        return Promise.reject(error);
-      }
+      (error) => Promise.reject(error)
     );
 
     // Response interceptor to handle 401 and 403 errors
@@ -35,8 +32,8 @@ const useAxiosSecure = () => {
       async (error) => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
           try {
-            await logOut(); // Call logOut method from AuthContext
-            navigate('/login'); // Redirect to login page
+            await logOut();
+            navigate('/login');
           } catch (logoutError) {
             console.error('Logout failed:', logoutError);
           }
@@ -50,7 +47,7 @@ const useAxiosSecure = () => {
       axiosSecure.interceptors.request.eject(requestInterceptor);
       axiosSecure.interceptors.response.eject(responseInterceptor);
     };
-  }, [logOut, navigate, axiosSecure]);
+  }, [logOut, navigate]);
 
   return axiosSecure;
 };

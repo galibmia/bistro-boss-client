@@ -3,16 +3,56 @@ import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { useForm } from "react-hook-form"
 import { ImSpoonKnife } from "react-icons/im";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+
+const img_hosting_token = import.meta.env.VITE_Img_Hosting_Token;
 
 const AddItem = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset,  formState: { errors } } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = data => {
-        console.log(data)
+        const formData = new FormData();
+        formData.append('image', data.image[0]);
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgUrl = imgResponse.data.url;
+                    const { name, price, category, recipe } = data;
+                    const newItem = { name, recipe, image: imgUrl, category, price: parseFloat(price) }
+                    axiosSecure.post('/menu', newItem)
+                        .then(data => {
+                            console.log(data.data);
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: "Item added successfully.",
+                                    icon: "success"
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error adding item:", error);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to add the item. Please try again.",
+                                icon: "error"
+                            });
+                        });
+                }
+            })
     };
 
     return (
-        <div className=''>
+        <div className='px-10'>
             <Helmet>
                 <title>Add Item | Bistro Boss</title>
             </Helmet>
@@ -22,7 +62,7 @@ const AddItem = () => {
                     subHeading={"What's new?"}
                 ></SectionTitle>
             </div>
-            <form className="card-body bg-base-200" onSubmit={handleSubmit(onSubmit)}>
+            <form className="card-body bg-base-200 px-10" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Recipe name <span className='text-red-600'>*</span></span>
@@ -42,7 +82,7 @@ const AddItem = () => {
                             <option value="salad">Salad</option>
                             <option value="pizza">Pizza</option>
                             <option value="soup">Soup</option>
-                            <option value="desserts">Desserts</option>
+                            <option value="dessert">Desserts</option>
                             <option value="drinks">Drinks</option>
                             <option value="offered">Offered</option>
                         </select>
@@ -78,7 +118,7 @@ const AddItem = () => {
                     </label>
                 </div>
                 <div className="form-control mt-2">
-                    <button  type='submit' className="btn text-xl w-40 rounded-none bg-custom-gradient  text-white">Add Item <ImSpoonKnife className='text-2xl'/></button>
+                    <button type='submit' className="btn text-xl w-40 rounded-none bg-custom-gradient  text-white">Add Item <ImSpoonKnife className='text-2xl' /></button>
                 </div>
             </form>
 

@@ -5,7 +5,7 @@ import useAuth from './useAuth';
 const useCart = () => {
   const { user, loading } = useAuth();
   console.log(loading)
-  const axiosSecure = useAxiosSecure(); // Use the custom axios instance
+  const axiosSecure = useAxiosSecure(); 
 
   const { refetch, data: cart = [] } = useQuery({
     queryKey: ['cart', user?.email],
