@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-brown-start': '#835D23',
+        'custom-brown-end': '#B58130',
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(90deg, #835D23 0%, #B58130 100%)',
+      },
       letterSpacing: {
         'custom': '9.12px',
       },
