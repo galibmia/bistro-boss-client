@@ -5,6 +5,7 @@ const PrivateRoutes = ({ children }) => {
     const { user, loading } = useAuth();
 
     const location = useLocation();
+    console.log(loading)
 
     if (loading) {
         return <div className='flex justify-center mt-[250px]'>

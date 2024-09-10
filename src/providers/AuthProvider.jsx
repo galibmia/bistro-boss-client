@@ -79,7 +79,9 @@ const AuthProvider = ({ children }) => {
             console.log("Current user: ", currentUser);
             setUser(currentUser);
 
-
+            if(!currentUser){
+                setLoading(false);
+            }
             // Get and Set token
             if (currentUser) {
                 axios.post('http://localhost:5000/jwt', {
