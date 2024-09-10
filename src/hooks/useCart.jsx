@@ -1,19 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { useContext } from 'react';
-import { AuthContext } from '../providers/AuthProvider';
 import useAxiosSecure from './useAxiosSecure';
+import useAuth from './useAuth';
 
 const useCart = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useAuth();
+  console.log(loading)
   const axiosSecure = useAxiosSecure(); // Use the custom axios instance
 
   const { refetch, data: cart = [] } = useQuery({
     queryKey: ['cart', user?.email],
+    enabled: !!user?.email && localStorage.getItem('access-token') !== null, // Check both user email and token
     queryFn: async () => {
       const response = await axiosSecure.get(`/carts?email=${user.email}`);
       return response.data;
-    },
-    enabled: !!user?.email, // Ensure query only runs when user email exists
+    }
   });
 
   return [cart, refetch];

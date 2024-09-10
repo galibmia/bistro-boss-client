@@ -16,6 +16,9 @@ const useAxiosSecure = () => {
     const requestInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem('access-token');
+        if (!token) {
+          console.error("No token found in localStorage at request time");
+        }
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }

@@ -42,27 +42,23 @@ const AuthProvider = ({ children }) => {
 
     const signInWithPassword = async (email, password) => {
         setLoading(true);
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            return userCredential;
-        } catch (error) {
-            console.error("Error signing in:", error);
-            throw error;
-        } finally {
-            setLoading(false);
-        }
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        setLoading(false);
+        return userCredential;
+
     }
 
     const loginWithGoogle = async () => {
         setLoading(true);
         try {
             const result = await signInWithPopup(auth, googleProvider);
+            setLoading(false);
             return result;
         } catch (error) {
             console.error("Error signing in with Google:", error);
             throw error;
         } finally {
-            setLoading(false);
+
         }
     }
 
@@ -80,23 +76,26 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log("Current user: ", currentUser);
             setUser(currentUser);
 
 
             // Get and Set token
             if (currentUser) {
                 axios.post('http://localhost:5000/jwt', {
-                        email: currentUser.email
-                    })
+                    email: currentUser.email
+                })
                     .then(data => {
+                        console.log("Token generated: ", data.data.token);
                         localStorage.setItem('access-token', data.data.token);
+                        setLoading(false);
                     })
-                
+
             } else {
                 localStorage.removeItem('access-token');
             }
 
-            setLoading(false);
+
         });
 
         return () => unsubscribe();

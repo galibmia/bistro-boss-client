@@ -11,6 +11,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 
 
 import useCart from '../hooks/useCart';
+import useAdmin from '../hooks/useAdmin';
 // import useAdmin from '../hooks/useAdmin';
 
 
@@ -20,8 +21,8 @@ const Dashboard = () => {
     const [cart] = useCart();
 
     // TODO: Set isAdmin value based on data load from server.
-    // const [isAdmin] = useAdmin();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    // const isAdmin = true;
 
     return (
         <div className="drawer lg:drawer-open">

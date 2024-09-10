@@ -112,10 +112,10 @@ const Login = () => {
                                 </div>
                                 <div className="form-control">
                                     <LoadCanvasTemplate />
-                                    <input type="text" placeholder="Type here" onChange={handleValidateCaptcha} className="input rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md" required />
+                                    <input type="text" placeholder="Type here" onBlur={handleValidateCaptcha} className="input rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md" />
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button disabled={disabled} type='submit' className="btn bg-[#D1A054B2] hover:bg-[#fcb751b2] text-white p-2">Login</button>
+                                    <button disabled={false} type='submit' className="btn bg-[#D1A054B2] hover:bg-[#fcb751b2] text-white p-2">Login</button>
                                 </div>
                                 <div className='mt-4'>
                                     <Link to='/register' className="text-[#c28934] hover:text-[#cc9441] ml-8">New here? <span className='font-semibold'>Create a New Account</span></Link>
