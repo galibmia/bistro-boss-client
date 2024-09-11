@@ -20,6 +20,7 @@ const useAxiosSecure = () => {
           console.error("No token found in localStorage at request time");
         }
         if (token) {
+          console.log(token)
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
