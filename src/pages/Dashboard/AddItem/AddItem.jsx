@@ -29,7 +29,6 @@ const AddItem = () => {
                     const newItem = { name, recipe, image: imgUrl, category, price: parseFloat(price) }
                     axiosSecure.post('/menu', newItem)
                         .then(data => {
-                            console.log(data.data);
                             if (data.data.insertedId) {
                                 reset();
                                 Swal.fire({
@@ -77,7 +76,7 @@ const AddItem = () => {
                         <label className="label">
                             <span className="label-text">Category <span className='text-red-600'> *</span></span>
                         </label>
-                        <select className='py-3 px-2 rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md' {...register("category", { required: true })}>
+                        <select defaultValue='Select Category' className='py-3 px-2 rounded-none focus:ring-0 focus:border-0 focus:outline-none focus:shadow-md' {...register("category", { required: true })}>
                             <option disabled selected>Select Category</option>
                             <option value="salad">Salad</option>
                             <option value="pizza">Pizza</option>
@@ -85,6 +84,8 @@ const AddItem = () => {
                             <option value="dessert">Desserts</option>
                             <option value="drinks">Drinks</option>
                             <option value="offered">Offered</option>
+                            <option value="recommended">Recommended</option>
+                            <option value="popular">Popular</option>
                         </select>
                         {errors.category?.type === "required" && (
                             <p className='text-red-600 ps-1'>Category is required</p>
