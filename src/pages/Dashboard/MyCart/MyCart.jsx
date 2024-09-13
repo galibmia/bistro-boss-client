@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure'; // Import the custom hook
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const [cart, refetch] = useCart();
@@ -60,7 +61,9 @@ const MyCart = () => {
             <div className='flex justify-between font-bold uppercase mb-8 mx-2'>
                 <h2 className="text-3xl cinzel-font">Total Orders: {cart.length}</h2>
                 <h2 className="text-3xl cinzel-font">Total Price: ${total}</h2>
-                <button className='bg-[#D1A054] hover:bg-[#ecb056] font-bold text-xl uppercase py-2 px-6 text-white hover:text-black rounded-lg'>Pay</button>
+                <Link to='/dashboard/payment'>
+                    <button className='bg-[#D1A054] hover:bg-[#ecb056] font-bold text-xl uppercase py-2 px-6 text-white hover:text-black rounded-lg'>Pay</button>
+                </Link>
             </div>
             {/* Cart display section */}
             <div>
