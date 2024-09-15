@@ -121,11 +121,8 @@ const AdminHome = () => {
         <span className="font-semibold">{user.displayName}</span>
       </h1>
       {statsLoading || graphLoading ? (
-        <div className="flex items-center justify-center my-96 py-16">
-          <span className="loading loading-ball loading-xs"></span>
-          <span className="loading loading-ball loading-sm"></span>
-          <span className="loading loading-ball loading-md"></span>
-          <span className="loading loading-ball loading-lg"></span>
+        <div className="flex items-center justify-center mt-14">
+          <span className="loading loading-spinner text-success"></span>
         </div>
       ) : graphError ? (
         <p>Error loading graph data</p>
