@@ -73,8 +73,8 @@ const UserHome = () => {
         </div>
       </div>
 
-      <div className="mt-14 flex">
-        <div className="w-1/2 mx-auto flex flex-col items-center bg-[#FFEDD5] border-r-[3px] border-[#D1A054]">
+      <div className="my-14 flex ">
+        <div className="w-1/2 mx-auto flex flex-col items-center bg-[#FFEDD5] border-r-[3px] border-[#D1A054] rounded-l-md">
           <img
             className="w-[192px] mt-24 rounded-full border-2 border-[#D1A054]"
             src={user.photoURL}
@@ -84,7 +84,7 @@ const UserHome = () => {
             {user.displayName}
           </h1>
         </div>
-        <div className="w-1/2 ps-[15%] bg-[#FEF9C3]">
+        <div className="w-1/2 ps-[15%] bg-[#FEF9C3] rounded-r-md">
           <h1 className="text-4xl cinzel-font font-semibold mt-24 mb-8">
             Your Activities
           </h1>
