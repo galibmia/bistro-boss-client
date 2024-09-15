@@ -21,6 +21,7 @@ import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import PaymentHistory from '../pages/Dashboard/PaymentHistory/PaymentHistory';
 import UserHome from '../pages/Dashboard/UserHome/UserHome';
+import Contact from '../pages/Contact/Contact';
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register></Register>
-      }
+      },
+      {
+        path: 'contact',
+        element: <Contact></Contact>
+      },
     ]
   },
   {
