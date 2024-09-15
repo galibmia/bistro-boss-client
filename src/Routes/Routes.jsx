@@ -20,6 +20,7 @@ import UpdateItem from '../pages/Dashboard/UpdateItem/UpdateItem';
 import Payment from '../pages/Dashboard/Payment/Payment';
 import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
+import PaymentHistory from '../pages/Dashboard/PaymentHistory/PaymentHistory';
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: 'payment',
         element: <Payment></Payment>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
       },
 
 
