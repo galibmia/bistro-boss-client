@@ -65,7 +65,7 @@ const ManageItems = () => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className='flex items-center justify-center my-[40%]'><span className="p-4 loading loading-bars loading-lg text-center"></span></div>;
     }
 
     if (isError) {
