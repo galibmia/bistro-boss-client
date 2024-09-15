@@ -10,7 +10,6 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Dashboard from '../Layout/Dashboard';
 import MyCart from '../pages/Dashboard/MyCart/MyCart';
-import UserHome from '../pages/Dashboard/Dashboard/UserHome';
 import PrivateRoutes from './PrivateRoutes';
 import AllUsers from '../pages/Dashboard/AllUsers/AllUsers';
 import AddItem from '../pages/Dashboard/AddItem/AddItem';
@@ -21,6 +20,7 @@ import Payment from '../pages/Dashboard/Payment/Payment';
 import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import PaymentHistory from '../pages/Dashboard/PaymentHistory/PaymentHistory';
+import UserHome from '../pages/Dashboard/UserHome/UserHome';
 
 export const router = createBrowserRouter([
   {

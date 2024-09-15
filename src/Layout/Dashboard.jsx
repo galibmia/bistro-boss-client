@@ -27,7 +27,7 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content w-[100%] mx-auto bg-[#F6F6F6] px-[10%]">
+            <div className="drawer-content w-[100%] mx-auto bg-[#F6F6F6] ps-[4%] pe-[2%]">
                 {/* Page content here */}
                 <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
