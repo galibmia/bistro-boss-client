@@ -10,7 +10,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Dashboard from '../Layout/Dashboard';
 import MyCart from '../pages/Dashboard/MyCart/MyCart';
-import DashboardHome from '../pages/Dashboard/Dashboard/DashboardHome';
+import UserHome from '../pages/Dashboard/Dashboard/UserHome';
 import PrivateRoutes from './PrivateRoutes';
 import AllUsers from '../pages/Dashboard/AllUsers/AllUsers';
 import AddItem from '../pages/Dashboard/AddItem/AddItem';
@@ -18,6 +18,7 @@ import AdminRoutes from './AdminRoutes';
 import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
 import UpdateItem from '../pages/Dashboard/UpdateItem/UpdateItem';
 import Payment from '../pages/Dashboard/Payment/Payment';
+import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: <DashboardHome></DashboardHome>
+        element: <UserHome></UserHome>
       },
       {
         path: 'myCart',
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
 
       
       // Admin Routes
+      {
+        path: 'adminHome',
+        element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>
+      },
       {
         path: 'allUsers',
         element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>

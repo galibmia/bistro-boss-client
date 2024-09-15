@@ -3,11 +3,14 @@ import ActiveLink from '../../../components/ActiveLink/ActiveLink';
 import { MdLogout } from "react-icons/md";
 import useCart from '../../../hooks/useCart';
 import useAuth from '../../../hooks/useAuth';
+import useAdmin from '../../../hooks/useAdmin';
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
 
     const [cart] = useCart();
+    const [isAdmin] = useAdmin()
+
 
     const handleLogOut = () => {
         logOut()
@@ -23,7 +26,11 @@ const NavBar = () => {
             <ActiveLink to={'/contact'} className='font-bold md:text-white'>CONTACT US</ActiveLink>
         </li>
         <li>
-            <ActiveLink to={'/dashboard/home'} className='font-bold md:text-white'>DASHBOARD</ActiveLink>
+            {
+                isAdmin ? <ActiveLink to={'/dashboard/adminHome'} className='font-bold md:text-white'>DASHBOARD</ActiveLink> 
+                : 
+                <ActiveLink to={'/dashboard/home'} className='font-bold md:text-white'>DASHBOARD</ActiveLink>
+            }
         </li>
         <li>
             <ActiveLink to={'/menu'} className='font-bold md:text-white'>OUR MENU</ActiveLink>

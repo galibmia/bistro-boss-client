@@ -29,7 +29,7 @@ const AllUsers = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/users/${id}`, {
+                    fetch(`https://bistro-boss-server-one-umber.vercel.app/users/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -61,7 +61,7 @@ const AllUsers = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/users/admin/${id}`, {
+                    fetch(`https://bistro-boss-server-one-umber.vercel.app/users/admin/${id}`, {
                         method: 'PATCH'
                     })
                     .then(res => res.json())

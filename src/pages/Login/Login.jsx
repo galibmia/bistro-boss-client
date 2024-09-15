@@ -51,7 +51,7 @@ const Login = () => {
             const result = await loginWithGoogle();
             const loggedInUser = result.user;
             const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email };
-            const response = await fetch('http://localhost:5000/users', {
+            const response = await fetch('https://bistro-boss-server-one-umber.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

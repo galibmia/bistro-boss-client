@@ -15,7 +15,7 @@ const UpdateItem = () => {
     const axiosSecure = useAxiosSecure();
 
     const [menu, setMenu] = useState({});
-    fetch(`http://localhost:5000/menu/${id}`)
+    fetch(`https://bistro-boss-server-one-umber.vercel.app/menu/${id}`)
         .then(res => res.json())
         .then(data => {
             setMenu(data)

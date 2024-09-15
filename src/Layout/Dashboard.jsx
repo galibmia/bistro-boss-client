@@ -27,7 +27,7 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content w-[70%] mx-auto bg-[#F6F6F6]">
+            <div className="drawer-content w-[100%] mx-auto bg-[#F6F6F6] px-[10%]">
                 {/* Page content here */}
                 <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
@@ -51,7 +51,7 @@ const Dashboard = () => {
                         </> : <>
                             <li className='uppercase cinzel-font'><NavLink to='/dashboard/home'><AiFillHome className='text-2xl' /> User Home</NavLink></li>
                             <li className='uppercase cinzel-font'><NavLink to='/dashboard/reservation'><SlCalender className='text-2xl' /> Reservation </NavLink></li>
-                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/payment'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
+                            <li className='uppercase cinzel-font'><NavLink to='/dashboard/paymentHistory'><GiWallet className='text-2xl' /> Payment History</NavLink></li>
                             <li className='uppercase cinzel-font'><NavLink to='/dashboard/myCart'><FaShoppingCart className='text-2xl' /> My Cart
                                 <span className="badge badge-sm indicator-item bg-red-700 text-white border-red-700">{cart?.length}</span>
                             </NavLink></li>

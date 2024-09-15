@@ -32,7 +32,7 @@ const MenuCard = ({ category }) => {
         if (user) {
             const { _id, name, price, image } = item;
             const cartItem = { menuItemId: _id, name, price, image, email: user.email }
-            fetch('http://localhost:5000/carts', {
+            fetch('https://bistro-boss-server-one-umber.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

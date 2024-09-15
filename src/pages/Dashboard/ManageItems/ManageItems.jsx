@@ -75,7 +75,7 @@ const ManageItems = () => {
     return (
         <div>
             <Helmet>
-                <title>All Users | Bistro Boss</title>
+                <title>All Items | Bistro Boss</title>
             </Helmet>
             <div className='mt-14 mb-24'>
                 <SectionTitle

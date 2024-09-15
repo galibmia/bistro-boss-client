@@ -83,7 +83,7 @@ const AuthProvider = ({ children }) => {
             }
             // Get and Set token
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', {
+                axios.post('https://bistro-boss-server-one-umber.vercel.app/jwt', {
                     email: currentUser.email
                 })
                     .then(data => {

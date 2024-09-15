@@ -23,7 +23,7 @@ const Register = () => {
                 updateUser(name, photoURL)
                     .then(() => {
                         const savedUser = { name, email }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://bistro-boss-server-one-umber.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -68,7 +68,7 @@ const Register = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://bistro-boss-server-one-umber.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
